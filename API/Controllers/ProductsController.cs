@@ -78,7 +78,7 @@ public class ProductsController(IGenericRepository<Product> repo) : BaseApiContr
     }
 
     [HttpGet("types")]
-    public async Task<ActionResult<IReadOnlyList<string>>> GetTypess()
+    public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
     {
         var spec = new TypeListSpecification();
         return Ok(await repo.ListAsync(spec));
