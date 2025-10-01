@@ -1,30 +1,15 @@
 @use '@angular/material' as mat;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-$customTheme: mat.define-theme();
-
-@include mat.elevation-classes();
-@include mat.app-background();
-
-.custom-theme{
-    @include mat.all-component-themes($customTheme);
-
-    //override button styles
-    .mdc-button, .mdc-raised-button, .mdc-stroked-button, .mdc-flat-button{
-        @apply rounded-md
-    }
-} 
-
-.container {
-    @apply mx-auto max-w-screen-2xl
+:root {
+  @include mat.button-overrides((
+    filled-container-shape: 6px,
+    outlined-container-shape: 6px,
+  ));
+   @include mat.badge-overrides((
+    background-color: red,
+  ));
 }
 
-.text-primary{
-    color:#7d00fa;
-}
 
 button.match-input-height{
     height: var(--mat-form-field-container-height) !important;
@@ -34,13 +19,17 @@ button.match-input-height{
     border-right-style: none !important;
 }
 
-.mat-mdc-snack-bar-container.snack-error{
-    --mdc-snackbar-container-color: red;
-    --mat-snackbar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
+.snack-error{
+    @include mat.snack-bar-overrides((
+    button-color: white,
+    container-color: red,
+    supporting-text-color: white
+  ));
 }
-.mat-mdc-snack-bar-container.snack-success{
-    --mdc-snackbar-container-color: green;
-    --mat-snackbar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
+.snack-success{
+    @include mat.snack-bar-overrides((
+    button-color: white,
+    container-color: green,
+    supporting-text-color: white
+  ));
 }
